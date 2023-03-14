@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Button, message, Space } from 'antd';
-function Login(props: any) {
-  const [count, setCount] = useState(0)
+import { useState, useEffect } from "react";
+import { Button } from "antd";
+function Login() {
+  const [count, setCount] = useState(0);
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   });
@@ -10,7 +10,6 @@ function Login(props: any) {
       <p>You clicked {count} times</p>
       <Button onClick={() => setCount(count + 1)}>Click me</Button>
     </div>
-
-  )
+  );
 }
-export default Login
+export default Login;

@@ -1,6 +1,5 @@
-import routes from '@/router/index'
-import { Link } from 'react-router-dom'
-import { Menu } from 'antd';
+import { Link } from "react-router-dom";
+import { Menu } from "antd";
 
 // 渲染link菜单
 function renderMenuItem(menu: any) {
@@ -10,7 +9,7 @@ function renderMenuItem(menu: any) {
         <span>{menu.title}</span>
       </Link>
     </Menu.Item>
-  )
+  );
 }
 
 // 渲染有子菜单的subMenu
@@ -27,5 +26,6 @@ function renderSubMenu(subMenu: any) {
     >
       {subMenu.subs && subMenu.subs.map((menu: any) => renderMenuItem(menu))}
     </Menu.SubMenu>
-  )
+  );
 }
+export default renderSubMenu;
