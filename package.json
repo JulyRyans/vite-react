@@ -9,7 +9,8 @@
     "build:dev": "tsc && vite build --mode development",
     "build:test": "tsc && vite build --mode test",
     "build:pro": "tsc && vite build --mode production",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -27,6 +28,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
+    "husky": "^8.0.0",
     "less-loader": "^11.1.0",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
