@@ -4,45 +4,40 @@ import { Layout } from "antd";
 import "./index.less";
 
 const LayoutIndex = (props: any) => {
-  const { Sider, Content } = Layout;
-  const { isCollapse, updateCollapse } = props;
+	const { Sider, Content } = Layout;
+	const { isCollapse, updateCollapse } = props;
 
-  // 监听窗口大小变化
-  const listeningWindow = () => {
-    window.onresize = () => {
-      return (() => {
-        let screenWidth = document.body.clientWidth;
-        if (!isCollapse && screenWidth < 1200) updateCollapse(true);
-        if (!isCollapse && screenWidth > 1200) updateCollapse(false);
-      })();
-    };
-  };
+	// 监听窗口大小变化
+	const listeningWindow = () => {
+		window.onresize = () => {
+			return (() => {
+				let screenWidth = document.body.clientWidth;
+				if (!isCollapse && screenWidth < 1200) updateCollapse(true);
+				if (!isCollapse && screenWidth > 1200) updateCollapse(false);
+			})();
+		};
+	};
 
-  useEffect(() => {
-    listeningWindow();
-  }, []);
+	useEffect(() => {
+		listeningWindow();
+	}, []);
 
-  return (
-    // 这里不用 Layout 组件原因是切换页面时样式会先错乱然后在正常显示，造成页面闪屏效果
-    <section className="container">
-      <Sider
-        trigger={null}
-        collapsed={props.isCollapse}
-        width={220}
-        theme="dark"
-      >
-        {/* <LayoutMenu></LayoutMenu> */}
-      </Sider>
-      <Layout>
-        <div>头部</div>
-        {/* <LayoutTabs></LayoutTabs> */}
-        <Content>
-          <Outlet></Outlet>
-        </Content>
-        <div>底部</div>
-      </Layout>
-    </section>
-  );
+	return (
+		// 这里不用 Layout 组件原因是切换页面时样式会先错乱然后在正常显示，造成页面闪屏效果
+		<section className="container">
+			<Sider trigger={null} collapsed={props.isCollapse} width={220} theme="dark">
+				{/* <LayoutMenu></LayoutMenu> */}
+			</Sider>
+			<Layout>
+				<div>头部</div>
+				{/* <LayoutTabs></LayoutTabs> */}
+				<Content>
+					<Outlet></Outlet>
+				</Content>
+				<div>底部</div>
+			</Layout>
+		</section>
+	);
 };
 
 // const mapStateToProps = (state: any) => state.menu;
