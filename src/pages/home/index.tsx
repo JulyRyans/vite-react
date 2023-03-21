@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react";
-import { Button } from "antd";
-function Login() {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <Button onClick={() => setCount(count + 1)}>Click me</Button>
-    </div>
-  );
-}
-export default Login;
+import welcome from "@/assets/images/welcome01.png";
+import "./index.less";
+
+const Home = () => {
+	return (
+		<div className="home card">
+			<img src={welcome} alt="welcome" />
+		</div>
+	);
+};
+
+export default Home;
