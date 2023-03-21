@@ -24,7 +24,7 @@ class Modals extends React.Component<ModalsProps, ModalsState> {
 	};
 	render() {
 		const { isModalVisible } = this.props;
-		return <Modal title="Basic Modal" visible={isModalVisible} onOk={this.props.handleOk} onCancel={this.props.handleOk}></Modal>;
+		return <Modal title="Basic Modal" open={isModalVisible} onOk={this.props.handleOk} onCancel={this.props.handleOk}></Modal>;
 	}
 }
 

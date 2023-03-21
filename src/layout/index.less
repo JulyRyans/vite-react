@@ -1,36 +1,21 @@
-.home {
-	height: calc(100vh);
-}
-
-.menu-content {
-	height: 100%;
-	.main-right {
-		width: 100%;
-		margin: 12px 13px 12px 14px;
-		.content-right {
-			height: 100%;
-		}
-	}
-}
-
-.header {
+.container {
 	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	padding: 0;
-	background-color: #fff;
-	margin: 0;
-	.header-left {
-		background-color: #00284d;
-		width: 200px;
+	min-width: 950px;
+	height: 100%;
+
+	.ant-layout-sider {
+		box-sizing: border-box;
 	}
-	.header-right {
-		width: calc(100% - 200px);
-		background-color: #fff;
-		display: flex;
-	}
-	.header-title {
-		color: #fff;
-		font-size: 28px;
+
+	.ant-layout {
+		/* 防止 tabs 超出不收缩 */
+		overflow-x: hidden;
+
+		.ant-layout-content {
+			box-sizing: border-box;
+			flex: 1;
+			padding: 10px 12px;
+			overflow-x: hidden;
+		}
 	}
 }
