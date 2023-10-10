@@ -12,19 +12,16 @@ export default defineConfig(({ mode }) => {
 		envDir: "./env",
 		plugins: [
 			react(),
-			viteCompression({
-				verbose: true,
-				disable: false,
-				threshold: 10240,
-				algorithm: "gzip",
-				ext: ".gz"
-			}),
+			viteCompression(),
 			env.VITE_NODE_ENV == "production"
 				? versionUpdatePlugin({
 						version: now
 				  })
 				: ""
 		],
+		esbuild: {
+			pure: ["console.log", "debugger"]
+		},
 		resolve: {
 			alias: {
 				"@": path.resolve(__dirname, "./src")
@@ -49,29 +46,32 @@ export default defineConfig(({ mode }) => {
 		},
 		// 预构建插件包
 		optimizeDeps: {
-			include: ["axios", "react-dom"]
+			include: ["axios", "react-dom", "@ant-design/icons", "antd"]
 		},
 		// 打包配置
 		build: {
 			target: "modules",
 			outDir: "dist", //指定输出路径
 			assetsDir: "assets", // 指定生成静态资源的存放路径
-			minify: "terser", // 混淆器，terser构建后文件体积更小
+			minify: "esbuild", // 混淆器，terser构建后文件体积更小
 			chunkSizeWarningLimit: 2000,
 			// 移除console
-			terserOptions: {
-				compress: {
-					drop_console: true,
-					drop_debugger: true
-				}
-			},
+			// terserOptions: {
+			// 	compress: {
+			// 		drop_console: true,
+			// 		drop_debugger: true
+			// 	}
+			// },
 			rollupOptions: {
 				output: {
-					manualChunks(id: any): string {
-						if (id.includes("node_modules")) {
-							return id.toString().split("node_modules/")[1].split("/")[0].toString();
-						}
+					manualChunks: {
+						echarts: ["echarts"]
 					},
+					// manualChunks(id: any): string {
+					// 	if (id.includes("node_modules")) {
+					// 		return id.toString().split("node_modules/")[1].split("/")[0].toString();
+					// 	}
+					// },
 					// 用于从入口点创建的块的打包输出格式[name]表示文件名,[hash]表示该文件内容hash值
 					entryFileNames: "js/[name].[hash].js",
 					// 用于命名代码拆分时创建的共享块的输出命名
@@ -82,9 +82,11 @@ export default defineConfig(({ mode }) => {
 			sourcemap: false // 这个生产环境一定要关闭，不然打包的产物会很大
 		},
 		server: {
-			port: 3000, // 开发环境启动的端口
+			port: 3100, // 开发环境启动的端口
 			host: "0.0.0.0",
 			open: true, // 项目启动时自动打开浏览器
+			compress: true, // 压缩代码
+			cors: true,
 			proxy: {
 				"/api": {
 					target: env.VITE_API_DOMAIN, // 当遇到 /api 路径时，会将其转换成 target 的值

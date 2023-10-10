@@ -1,8 +1,8 @@
-// import React from "react";
-// import lazyLoad from "@/routers/util/lazyLoad";
+import React from "react";
+import lazyLoad from "@/router/utils/lazyLoad";
 import { LayoutIndex } from "@/router/constant";
 import { RouteObject } from "@/router/interface";
-import Home from "@/pages/home/index";
+// import Home from "@/pages/home/index";
 
 // 首页模块
 const homeRouter: Array<RouteObject> = [
@@ -11,8 +11,7 @@ const homeRouter: Array<RouteObject> = [
 		children: [
 			{
 				path: "/home",
-				// element: lazyLoad(React.lazy(() => import("@/views/home/index"))),
-				element: <Home />,
+				element: lazyLoad(React.lazy(() => import("@/pages/home/index"))),
 				meta: {
 					requiresAuth: true,
 					title: "首页",
